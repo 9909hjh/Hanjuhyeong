@@ -1,5 +1,5 @@
 #include "TextureManager.h"
-#include "SDL_image.h" //왜 이 헤더파일을 메니져.h에 두는게 아니라 cpp에 둬야 되는지 모르겠다 물어보자.
+#include "SDL_image.h"
 
 TextureManager* TextureManager::s_pInstance = 0;
 
@@ -20,7 +20,7 @@ bool TextureManager::load(std::string fileName, std::string id, SDL_Renderer* pR
   return false;
 }
 
-void TextureManager::draw(std::string id, int x, int y, int width, int height, float rotationAngle,
+void TextureManager::draw(std::string id, int x, int y, int width, int height,
 SDL_Renderer *pRenderer, SDL_RendererFlip flip)
 {
   SDL_Rect srcRect;
@@ -33,10 +33,10 @@ SDL_Renderer *pRenderer, SDL_RendererFlip flip)
   destRect.x = x;
   destRect.y = y;
 
-  SDL_RenderCopyEx(pRenderer, m_textureMap[id], &srcRect, &destRect, rotationAngle, NULL, flip);
+  SDL_RenderCopyEx(pRenderer, m_textureMap[id], &srcRect, &destRect, 0, 0, flip);
 }
 
-void TextureManager::drawFrame(std::string id, int x, int y, int width, int height, float rotationAngle, int currentRow, int currentFrame, 
+void TextureManager::drawFrame(std::string id, int x, int y, int width, int height, int currentRow, int currentFrame, 
 SDL_Renderer *pRenderer, SDL_RendererFlip flip)
 {
   SDL_Rect srcRect;
@@ -49,5 +49,5 @@ SDL_Renderer *pRenderer, SDL_RendererFlip flip)
   destRect.x = x;
   destRect.y = y;
 
-  SDL_RenderCopyEx(pRenderer, m_textureMap[id], &srcRect, &destRect, rotationAngle, NULL, flip);
+  SDL_RenderCopyEx(pRenderer, m_textureMap[id], &srcRect, &destRect, 0, 0, flip);
 }
