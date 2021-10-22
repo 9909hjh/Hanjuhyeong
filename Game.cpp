@@ -1,6 +1,8 @@
 #include "Game.h"
 #include "SDL_image.h"
 
+Game* Game::s_pInstance = 0;
+
 bool Game::init(const char* title, int xpos, int ypos, int height, int width, int flags)
 {
   if(SDL_Init(SDL_INIT_EVERYTHING) == 0) 
@@ -28,13 +30,16 @@ bool Game::init(const char* title, int xpos, int ypos, int height, int width, in
 
   // m_go.load(100, 100, 128, 82, "animate");
   // m_player.load(300, 300, 128, 82, "animate");
-  GameObject* m_go = new GameObject();
-  GameObject* m_player = new Player();
+  // GameObject* m_go = new GameObject();
+  // GameObject* m_player = new Player();
 
-  m_go->load(100, 100, 128, 82, "animate");
-  m_player->load(300, 300, 128, 82, "animate");
-  m_gameObjects.push_back(m_go);
-  m_gameObjects.push_back(m_player);
+  // m_go->load(100, 100, 128, 82, "animate");
+  // m_player->load(300, 300, 128, 82, "animate");
+  // m_gameObjects.push_back(m_go);
+  // m_gameObjects.push_back(m_player);
+
+  m_gameObjects.push_back( new Player( new LoaderParams(100, 100, 128, 82, "animate")));
+  m_gameObjects.push_back( new Enemy( new LoaderParams(100, 100, 128, 82, "animate")));
   
 
   m_bRunning = true;
@@ -66,11 +71,15 @@ void Game::render()
   // m_go.draw(m_pRenderer);
   // m_player.draw(m_pRenderer);
 
-  for(int i = 0; i < m_gameObjects.size(); i++)
-  {
-    m_gameObjects[i] -> draw(m_pRenderer);
-  }
+  // for(int i = 0; i < m_gameObjects.size(); i++)
+  // {
+  //   m_gameObjects[i] -> draw(m_pRenderer);
+  // }
 
+  for(int i = 0; i != m_gameObjects.size(); i++)
+  {
+    m_gameObjects[i]->draw();
+  }
   SDL_RenderPresent(m_pRenderer);
 }
 
