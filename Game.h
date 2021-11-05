@@ -6,6 +6,7 @@
 #include "GameObject.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "InputHandler.h"
 #include "vector"
 
 class Game {
@@ -28,6 +29,7 @@ class Game {
   bool running();
   void handleEvents();
   void clean();
+  void quit() {m_bRunning = false;}
   
   static Game* Instance() {
     if(s_pInstance == 0) {
