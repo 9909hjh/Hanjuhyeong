@@ -29,7 +29,7 @@ class Game {
   bool running();
   void handleEvents();
   void clean();
-  void quit() {m_bRunning = false;}
+  void quit() { m_bRunning = false; }
   
   static Game* Instance() {
     if(s_pInstance == 0) {
